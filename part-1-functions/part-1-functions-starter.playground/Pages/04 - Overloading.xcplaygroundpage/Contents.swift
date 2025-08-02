@@ -9,8 +9,27 @@ let ozmaAllGrades = [60, 96, 87, 42]
 // --------------------------------------
 
 //: ### Function overloads
+func getPassStatus(for grade: Int) -> Bool {
+  grade >= passingGrade
+}
 
+// different number of parameters
+func getPassStatus(for grade: Int, lowestPass: Int = 80) {
+  grade >= lowestPass
+}
 
+func getPassStatus(for grades: [Int]) -> Bool {
+  var totalGrade = 0
+  for grade in grades {
+    totalGrade += grade
+  }
+  
+  let averageGrade = totalGrade / grades.count
+  return averageGrade >= passingGrade
+}
+
+getPassStatus(for: ozmaGrade)
+getPassStatus(for: ozmaAllGrades)
 
 //: Overload using Different Number of Parameters
 

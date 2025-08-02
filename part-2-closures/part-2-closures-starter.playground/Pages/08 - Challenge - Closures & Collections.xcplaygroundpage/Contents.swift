@@ -38,32 +38,40 @@ let students = [chris, sam, catie, andrea]
  Rewrite one of them using `forEach` and the other with `map`
 */
 
-for student in students {
+
+//for student in students {
+//  student.earnExtraCredit()
+//}
+students.forEach { student in
   student.earnExtraCredit()
 }
 
-var classLibraryBooks: [[String]] = []
-for student in students {
-  classLibraryBooks.append(student.libraryBooks)
+print("classLibraryBooks=")
+let classLibraryBooks = students.map { (student) -> [String] in
+  student.libraryBooks
 }
 
-
-
-
+print(classLibraryBooks)
 /*:
  ## Challenge 2 - compactMap
  Replace the `for` loop below with compactMap.
  It will filter out the `nil` values for you!
 */
-
+print("-------------------------")
 var classPets: [String] = []
-for student in students {
-  if let pet = student.pet {
+//for student in students {
+//  if let pet = student.pet {
+//    classPets.append(pet)
+//  }
+//}
+
+students.compactMap {
+  if let pet = $0.pet {
     classPets.append(pet)
   }
 }
-
-
+print("-------------------------")
+print(classPets)
 
 /*:
  ## Challenge 3 - flatMap
@@ -71,6 +79,9 @@ for student in students {
  Try using flatMap to flatten all of the books into a single String array.
 */
 
+var libraryBooks2: [String] = classLibraryBooks.flatMap({ libraryBooks in
+  return libraryBooks
+})
 
-
+print(libraryBooks2)
 //: [⇒ Next: 09 - filter, reduce, & sort](@next)
